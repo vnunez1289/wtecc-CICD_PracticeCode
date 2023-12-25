@@ -1,5 +1,11 @@
 apiVersion: triggers.tekton.dev/v1beta1
 kind: EventListener
 metadata:
-  name: <place-name-here>
-spec:
+  name: cd-listener
+spec:  
+  serviceAccountName: pipeline
+  triggers:
+    - bindings:
+      - ref: cd-binding
+      template:
+        ref: cd_template
